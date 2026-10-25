@@ -55,12 +55,15 @@ const statusVariant: Record<
 <template>
     <Head title="Dashboard" />
 
-    <div class="space-y-1">
-        <h1 class="text-2xl font-semibold tracking-tight">
+    <div class="space-y-2 border-b pb-5">
+        <h1
+            class="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
+        >
             Halo, {{ student.name }}
         </h1>
         <p class="text-sm text-muted-foreground">
-            {{ classroom?.title }} · NISN {{ student.nisn }}
+            {{ classroom?.title }} <span aria-hidden="true">·</span> NISN
+            {{ student.nisn }}
         </p>
     </div>
 
@@ -71,8 +74,12 @@ const statusVariant: Record<
     />
 
     <div v-else class="space-y-3">
-        <Card v-for="session in sessions" :key="session.id">
-            <CardHeader class="flex-row items-start justify-between gap-4">
+        <Card
+            v-for="session in sessions"
+            :key="session.id"
+            class="border-x-0 border-t-0 bg-transparent shadow-none last:border-b-0"
+        >
+            <CardHeader class="flex-row items-start justify-between gap-4 px-0">
                 <div class="space-y-1">
                     <CardTitle>{{ session.exam_title }}</CardTitle>
                     <CardDescription>
@@ -86,7 +93,7 @@ const statusVariant: Record<
                     {{ statusLabel[session.status] }}
                 </Badge>
             </CardHeader>
-            <CardContent class="space-y-4">
+            <CardContent class="space-y-4 px-0">
                 <p
                     v-if="session.description"
                     class="text-sm text-muted-foreground"

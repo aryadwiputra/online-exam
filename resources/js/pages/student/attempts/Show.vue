@@ -126,19 +126,25 @@ onUnmounted(() => {
 <template>
     <Head :title="exam.title" />
 
-    <div class="space-y-1">
-        <p class="text-sm text-muted-foreground">{{ exam.session }}</p>
-        <div class="flex flex-wrap items-center justify-between gap-3">
-            <h1 class="text-xl font-semibold tracking-tight">
+    <div class="space-y-4 border-b pb-5">
+        <p class="text-sm font-medium text-muted-foreground">
+            {{ exam.session }}
+        </p>
+        <div class="flex flex-wrap items-end justify-between gap-3">
+            <h1
+                class="font-display text-2xl font-semibold tracking-tight sm:text-3xl"
+            >
                 {{ exam.title }}
             </h1>
             <div
+                role="timer"
+                aria-live="off"
                 :class="
                     cn(
-                        'flex items-center gap-2 rounded-lg border px-3 py-1.5 font-mono text-lg font-semibold tabular-nums',
+                        'flex items-center gap-2 rounded-md border bg-card px-3 py-2 font-mono text-lg font-semibold tabular-nums',
                         isUrgent
                             ? 'border-destructive/40 bg-destructive/10 text-destructive'
-                            : '',
+                            : 'text-primary',
                     )
                 "
             >
@@ -146,18 +152,38 @@ onUnmounted(() => {
                 {{ formattedTime }}
             </div>
         </div>
+        <div class="space-y-2">
+            <div class="flex items-center justify-between text-sm">
+                <span class="font-medium"
+                    >Soal {{ question.position }} dari {{ total }}</span
+                >
+                <span class="text-muted-foreground"
+                    >{{ answeredCount }} terjawab</span
+                >
+            </div>
+            <div
+                class="h-1.5 overflow-hidden rounded-full bg-secondary"
+                role="progressbar"
+                :aria-valuenow="answeredCount"
+                :aria-valuemin="0"
+                :aria-valuemax="total"
+                aria-label="Jumlah soal terjawab"
+            >
+                <div
+                    class="h-full bg-primary transition-[width]"
+                    :style="{
+                        width: `${total ? (answeredCount / total) * 100 : 0}%`,
+                    }"
+                />
+            </div>
+        </div>
     </div>
 
-    <div
-        class="flex items-center justify-between text-sm text-muted-foreground"
-    >
-        <span>Soal {{ question.position }} dari {{ total }}</span>
-        <span>{{ answeredCount }} terjawab</span>
-    </div>
-
-    <Card>
-        <CardContent class="space-y-4">
-            <p class="text-base font-medium">{{ question.text }}</p>
+    <Card class="border-0 bg-transparent shadow-none">
+        <CardContent class="space-y-5 px-0">
+            <p class="font-display text-xl leading-8 font-medium">
+                {{ question.text }}
+            </p>
 
             <div class="space-y-2">
                 <button
@@ -167,10 +193,10 @@ onUnmounted(() => {
                     :disabled="saving"
                     :class="
                         cn(
-                            'flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-colors',
+                            'flex w-full items-start gap-3 rounded-md border bg-card p-4 text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                             question.chosen_index === option.index
-                                ? 'border-primary bg-accent'
-                                : 'hover:bg-muted/60',
+                                ? 'border-primary bg-primary/5'
+                                : 'hover:border-primary/40 hover:bg-secondary/50',
                         )
                     "
                     @click="choose(option.index)"
@@ -178,7 +204,7 @@ onUnmounted(() => {
                     <span
                         :class="
                             cn(
-                                'grid size-6 shrink-0 place-items-center rounded-full border text-xs font-semibold',
+                                'grid size-7 shrink-0 place-items-center rounded-md border text-xs font-semibold',
                                 question.chosen_index === option.index
                                     ? 'border-primary bg-primary text-primary-foreground'
                                     : 'text-muted-foreground',
@@ -211,12 +237,12 @@ onUnmounted(() => {
             :href="pageUrl(item.position)"
             :class="
                 cn(
-                    'grid size-8 place-items-center rounded-md border text-xs font-medium transition-colors',
+                    'grid size-9 place-items-center rounded-md border text-xs font-medium tabular-nums transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                     item.position === question.position
                         ? 'border-primary bg-primary text-primary-foreground'
                         : item.answered
-                          ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
-                          : 'bg-background hover:bg-accent',
+                          ? 'border-primary/50 bg-primary/10 text-primary'
+                          : 'bg-background hover:bg-secondary',
                 )
             "
         >

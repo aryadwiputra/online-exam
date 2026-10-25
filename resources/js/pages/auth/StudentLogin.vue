@@ -33,9 +33,9 @@ function submit(): void {
 <template>
     <Head title="Masuk Peserta" />
 
-    <Card>
-        <CardContent class="space-y-4">
-            <form class="space-y-4" @submit.prevent="submit">
+    <Card class="border-0 bg-transparent shadow-none">
+        <CardContent class="space-y-5 px-0">
+            <form class="space-y-5" @submit.prevent="submit">
                 <div class="space-y-2">
                     <Label for="nisn">NISN</Label>
                     <Input
@@ -43,7 +43,7 @@ function submit(): void {
                         v-model="form.nisn"
                         inputmode="numeric"
                         autocomplete="username"
-                        placeholder="0000000000"
+                        placeholder="Masukkan NISN"
                         required
                     />
                     <p v-if="form.errors.nisn" class="text-sm text-destructive">
@@ -90,7 +90,7 @@ function submit(): void {
                 Admin?
                 <Link
                     href="/login"
-                    class="font-medium text-primary hover:underline"
+                    class="font-medium text-primary underline-offset-4 hover:underline"
                 >
                     Masuk di sini
                 </Link>

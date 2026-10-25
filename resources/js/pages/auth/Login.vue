@@ -33,9 +33,9 @@ function submit(): void {
 <template>
     <Head title="Masuk Admin" />
 
-    <Card>
-        <CardContent class="space-y-4">
-            <form class="space-y-4" @submit.prevent="submit">
+    <Card class="border-0 bg-transparent shadow-none">
+        <CardContent class="space-y-5 px-0">
+            <form class="space-y-5" @submit.prevent="submit">
                 <div class="space-y-2">
                     <Label for="email">Email</Label>
                     <Input
@@ -43,7 +43,7 @@ function submit(): void {
                         v-model="form.email"
                         type="email"
                         autocomplete="email"
-                        placeholder="admin@example.com"
+                        placeholder="nama@sekolah.sch.id"
                         required
                     />
                     <p
@@ -91,7 +91,10 @@ function submit(): void {
 
             <p class="text-center text-sm text-muted-foreground">
                 Peserta ujian?
-                <Link href="/" class="font-medium text-primary hover:underline">
+                <Link
+                    href="/"
+                    class="font-medium text-primary underline-offset-4 hover:underline"
+                >
                     Masuk di sini
                 </Link>
             </p>

@@ -10,7 +10,7 @@ const props = defineProps<{ class?: HTMLAttributes['class'] }>();
         data-slot="table-head"
         :class="
             cn(
-                'h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-muted-foreground',
+                'h-10 border-b border-border bg-secondary/60 px-3 text-left align-middle text-xs font-semibold tracking-wide whitespace-nowrap text-secondary-foreground uppercase',
                 props.class,
             )
         "

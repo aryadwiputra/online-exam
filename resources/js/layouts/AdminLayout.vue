@@ -44,6 +44,10 @@ const navigation = [
 ];
 
 function isActive(href: string): boolean {
+    if (href === dashboard.url()) {
+        return page.url.split('?')[0] === href;
+    }
+
     return page.url === href || page.url.startsWith(`${href}/`);
 }
 </script>
@@ -59,20 +63,29 @@ function isActive(href: string): boolean {
         <aside
             :class="
                 cn(
-                    'fixed inset-y-0 left-0 z-40 flex w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar transition-transform lg:static lg:translate-x-0',
+                    'fixed inset-y-0 left-0 z-40 flex w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar transition-transform lg:sticky lg:top-0 lg:h-screen lg:translate-x-0',
                     open ? 'translate-x-0' : '-translate-x-full',
                 )
             "
         >
             <div
-                class="flex h-16 items-center justify-between border-b border-sidebar-border px-4"
+                class="flex h-20 items-center justify-between border-b border-sidebar-border px-5"
             >
-                <Link href="/admin" class="flex items-center gap-2">
+                <Link href="/admin" class="flex items-center gap-3">
                     <span
-                        class="grid size-8 place-items-center rounded-md bg-primary text-sm font-bold text-primary-foreground"
+                        class="grid size-8 place-items-center rounded-md bg-primary font-display text-base font-bold text-primary-foreground"
                         >E</span
                     >
-                    <span class="font-semibold">Exam Admin</span>
+                    <span class="space-y-0.5">
+                        <span
+                            class="block font-display font-semibold tracking-tight"
+                            >Ujian Online</span
+                        >
+                        <span
+                            class="block text-[11px] text-sidebar-foreground/65"
+                            >Administrasi</span
+                        >
+                    </span>
                 </Link>
                 <button
                     class="text-muted-foreground lg:hidden"
@@ -90,12 +103,13 @@ function isActive(href: string): boolean {
                     :href="item.href"
                     :class="
                         cn(
-                            'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                            'flex min-h-11 items-center gap-3 rounded-sm px-3 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-sidebar-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar',
                             isActive(item.href)
-                                ? 'bg-sidebar-accent text-sidebar-accent-foreground'
+                                ? 'bg-sidebar-accent font-semibold text-sidebar-accent-foreground'
                                 : 'text-sidebar-foreground hover:bg-sidebar-accent/60',
                         )
                     "
+                    :aria-current="isActive(item.href) ? 'page' : undefined"
                     @click="open = false"
                 >
                     <component :is="item.icon" class="size-4" />
@@ -114,7 +128,7 @@ function isActive(href: string): boolean {
                     href="/logout"
                     method="post"
                     as="button"
-                    class="mt-2 flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                    class="mt-2 flex w-full items-center gap-3 rounded-sm border-l-2 border-transparent px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                 >
                     <LogOut class="size-4" />
                     Keluar

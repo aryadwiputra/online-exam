@@ -110,7 +110,7 @@ const labels = ['A', 'B', 'C', 'D', 'E'];
                                 cn(
                                     'flex gap-2 rounded px-1',
                                     index === answer.answer_index
-                                        ? 'font-medium text-emerald-700'
+                                        ? 'font-medium text-success-foreground'
                                         : '',
                                     index === answer.chosen_index &&
                                         index !== answer.answer_index

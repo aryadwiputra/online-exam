@@ -187,7 +187,7 @@ const labels = ['A', 'B', 'C', 'D', 'E'];
                                 <span
                                     :class="
                                         optionIndex === question.answer_index
-                                            ? 'font-medium text-emerald-700'
+                                            ? 'font-medium text-success-foreground'
                                             : ''
                                     "
                                 >

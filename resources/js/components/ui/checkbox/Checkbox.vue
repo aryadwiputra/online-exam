@@ -16,9 +16,9 @@ const emits = defineEmits<CheckboxRootEmits>();
         v-bind="props"
         :class="
             cn(
-                'peer size-4 shrink-0 rounded-[4px] border border-input shadow-xs transition-shadow outline-none',
-                'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50',
-                'data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary',
+                'peer size-5 shrink-0 rounded-full border border-input bg-muted transition-colors outline-none',
+                'focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/15',
+                'data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary data-[state=checked]:rounded-full',
                 'disabled:cursor-not-allowed disabled:opacity-50',
                 props.class,
             )

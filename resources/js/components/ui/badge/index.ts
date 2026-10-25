@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 export { default as Badge } from './Badge.vue';
 
 export const badgeVariants = cva(
-    'inline-flex items-center justify-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3',
+    'inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-sm border px-3 py-1 text-xs font-medium whitespace-nowrap [&>svg]:size-3',
     {
         variants: {
             variant: {
@@ -15,9 +15,9 @@ export const badgeVariants = cva(
                     'border-transparent bg-destructive text-destructive-foreground',
                 outline: 'text-foreground',
                 success:
-                    'border-transparent bg-emerald-600 text-white',
+                    'border-transparent bg-[#065f46] text-white dark:bg-[#064e3b] dark:text-[#d1fae5]',
                 warning:
-                    'border-transparent bg-amber-500 text-white',
+                    'border-transparent bg-warning/20 text-warning-foreground',
             },
         },
         defaultVariants: {

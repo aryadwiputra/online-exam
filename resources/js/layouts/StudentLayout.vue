@@ -13,14 +13,14 @@ const student = computed(() => page.props.auth.student);
     <div class="min-h-screen bg-background">
         <header class="border-b bg-card">
             <div
-                class="mx-auto flex h-16 max-w-4xl items-center justify-between gap-4 px-4"
+                class="mx-auto flex min-h-16 max-w-5xl items-center justify-between gap-4 px-4"
             >
                 <Link
                     href="/student/dashboard"
-                    class="flex items-center gap-2 font-semibold"
+                    class="flex items-center gap-3 font-display font-semibold tracking-tight"
                 >
                     <span
-                        class="grid size-8 place-items-center rounded-md bg-primary text-sm font-bold text-primary-foreground"
+                        class="grid size-8 place-items-center rounded-md bg-primary font-display text-base font-bold text-primary-foreground"
                         >E</span
                     >
                     Ujian Online
@@ -45,7 +45,7 @@ const student = computed(() => page.props.auth.student);
             </div>
         </header>
 
-        <main class="mx-auto w-full max-w-4xl space-y-6 p-4 lg:p-8">
+        <main class="mx-auto w-full max-w-5xl space-y-7 p-4 sm:p-6 lg:p-10">
             <slot />
         </main>
     </div>
